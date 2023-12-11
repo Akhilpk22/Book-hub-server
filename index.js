@@ -2,15 +2,22 @@
 require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
+  // import router
+  const router = require('./Routes/router')
+// import the connection
+    require('./DB/connection')
 
+     
 // server creations using express  this bfserver applications to resovle front end request 
 const bfServer = express()
 
 
 // to use the cors in server use data share data type json 
 bfServer.use(cors())
-// data pass to js type   
+// data pass to js type middleware
 bfServer.use(express.json())
+// data share in use of after cors and  json   import the routr
+bfServer.use(router)
 // changing port number creation define
 const PORT = 4000 || process.env.PORT
 
