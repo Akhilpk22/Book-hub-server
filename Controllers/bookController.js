@@ -32,7 +32,7 @@ exports.addbooks =async (req, res) => {
    }
 }
 
-//get user book only
+//get user book only token 
 exports.alluserBook = async (req, res)=>{
    const userId = req.payload
    try{
@@ -52,6 +52,47 @@ exports.allBook = async(req, res)=>{
       res.status(200).json(bookDetails)
    }catch(err){
       res.status(401).json(err)
+   }
+
+}
+
+// update  books
+exports.editbook = async (req, res)=>{
+   // get the  book is 
+   const { id } =req.params
+   const  userId = req.payload
+   const {
+      bookTitle,
+      autorName,
+      bookCategory,
+      bookDescription,
+      bookLink,
+      bookImage,
+   } = req.body
+   const uploadbookImage = req.file?req.file.filename:bookImage
+
+   try{
+      const updateBook = await books.findByIdAndUpdate({_id:id},{
+         bookTitle,autorName,bookCategory,bookDescription,bookLink,bookImage:uploadbookImage,userId
+      },{new:true}) 
+      await updateBook.save()
+      res.status(200).json(updateBook)
+   }catch(err){
+      res.status(401).json(err)
+   }
+
+}
+
+// delete the book
+exports.deletebook= async(req, res)=>{
+   // which book you delete i wan to that book
+   const {id}= req.params
+   try{
+      const removebook =await books.findByIdAndDelete({_id:id})
+      res.status(200).json(removebook)
+
+   }catch(err){
+      res.status(404).json(err)
    }
 
 }

@@ -24,5 +24,12 @@ router.get('/user/all-books',jwtmiddleware,bookController.alluserBook)
 // alll user books
 router.get('/books/all',bookController.allBook)
 
+// edit books
+router.put('/books/edit/:id',jwtmiddleware,multerConfig.single("bookImage"),bookController.editbook)
+
+
+// delete books
+router.delete('/books/remove/:id',jwtmiddleware,bookController.deletebook)
+
 // export the  Router() in the step all defined datas 
 module.exports = router

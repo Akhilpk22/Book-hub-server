@@ -18,6 +18,8 @@ bfServer.use(cors())
 bfServer.use(express.json())
 // data share in use of after cors and  json   import the routr
 bfServer.use(router)
+// front end images  to send the location
+bfServer.use('/uploads',express.static('./uploads'))
 // changing port number creation define
 const PORT = 4000 || process.env.PORT
 
