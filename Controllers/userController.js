@@ -31,6 +31,7 @@ exports.register =async (req,res)=>{
 exports.login = async(req,res)=>{
     console.log("inside login controller function ");
     const {email,password} = req.body
+   
     try{
         const existingUser = await users.findOne({email,password})
         if(existingUser){
