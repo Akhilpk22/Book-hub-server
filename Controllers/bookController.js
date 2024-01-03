@@ -44,7 +44,6 @@ exports.alluserBook = async (req, res)=>{
    }
 
 }
-
 // get all users book 
 exports.allBook = async(req, res)=>{
    try{

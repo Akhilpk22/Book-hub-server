@@ -31,5 +31,8 @@ router.put('/books/edit/:id',jwtmiddleware,multerConfig.single("bookImage"),book
 // delete books
 router.delete('/books/remove/:id',jwtmiddleware,bookController.deletebook)
 
+router.put('/user/edit', jwtmiddleware,multerConfig.single("profileImage"), userController.editUser);
+
+
 // export the  Router() in the step all defined datas 
 module.exports = router
